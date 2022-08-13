@@ -59,3 +59,6 @@ function resizeGrid () {
 }
 
 setGrid(16,16);
+window.addEventListener('resize', function(event) { 
+    resizeGrid();
+});
