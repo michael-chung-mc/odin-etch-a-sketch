@@ -58,7 +58,19 @@ function resizeGrid () {
     }
 }
 
+//default grid
 setGrid(16,16);
+//dynamically adjust grid size
 window.addEventListener('resize', function(event) { 
     resizeGrid();
+});
+//let button resize and clear grid
+const resizeButton = document.getElementById('resizeButton');
+resizeButton.addEventListener('click', function(event) {
+    let cellCount = prompt('Number of squares for new grid?')
+    if (cellCount < 101)
+    {
+        clearGrid();
+        setGrid(cellCount, cellCount);
+    }
 });
