@@ -3,11 +3,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    gap: 8px;
 }
 
 .grid {
     display: flex;
     flex-direction: column;
+    border: 1px solid black;
     width:75vw;
     height:75vw;
 }
@@ -17,14 +19,12 @@ body {
 }
 
 .square {
-    background-color: pink;
-    border-color: black;
-    border-width: 0px;
+    background-color: white;
     margin: 0px;
     min-width: 8px;
     min-height: 8px;
 }
 
 .shaded {
-    background-color: blue;
+    background-color: darkgray;
 }
