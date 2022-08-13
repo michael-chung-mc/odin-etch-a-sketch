@@ -8,19 +8,18 @@ body {
 .grid {
     display: flex;
     flex-direction: column;
-    overflow: auto;
+    width:75vw;
+    height:75vw;
 }
 
 .row {
     display: flex;
-    width:75vw;
 }
 
 .square {
     background-color: pink;
     border-color: black;
-    border-width: 8px;
-    border: 8px;
+    border-width: 0px;
     margin: 0px;
     min-width: 8px;
     min-height: 8px;
