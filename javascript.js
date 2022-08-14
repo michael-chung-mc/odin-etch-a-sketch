@@ -84,6 +84,7 @@ function maximizeOpacity () {
         let cells = rows[i].children;
         for (let j = 0; j < cells.length; j++)
         {
+            cells[j].style.backgroundColor = `rgb(255,255,255)`;
             cells[j].style.opacity = 1.0;
         }
     }
