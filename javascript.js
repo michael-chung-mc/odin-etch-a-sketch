@@ -39,20 +39,53 @@ function shadeCell (event) {
     if (cellShadeOption == 0) {
         if (currentColor != "black")
         {
-            cell.style.backgroundColor = "black";
+            cell.style.backgroundColor = `rgba(0,0,0, 1.0)`;
+            console.log(`${cell.style.opacity}`);
         }
     }
     else if (cellShadeOption == 1) {
         const randomRed = Math.floor(Math.random() * (256));
         const randomBlue = Math.floor(Math.random() * (256));
         const randomGreen = Math.floor(Math.random() * (256));
-        cell.style.backgroundColor = `rgb(${randomRed},${randomBlue},${randomGreen})`;
+        cell.style.backgroundColor = `rgba(${randomRed},${randomBlue},${randomGreen}, 1.0)`;
+        console.log(`${cell.style.opacity}`);
     }
     else if (cellShadeOption == 2) {
-        cell.style.backgroundColor = {};
+        console.log("base");
+        console.log(`${cell.style.backgroundColor}`);
+        console.log(`${cell.style.opacity}`);
+        cell.style.opacity = parseFloat(cell.style.opacity) + 0.1;
+        console.log("set");
+        console.log(`${cell.style.backgroundColor}`);
+        console.log(`${cell.style.opacity}`);
     }
     else {
         console.log("ShadeCell: Unsupported cell shade option")
+    }
+}
+
+function initializeOpacity () {
+    let rows = grid.children;
+    for (let i = 0; i < rows.length; i++)
+    {
+        let cells = rows[i].children;
+        for (let j = 0; j < cells.length; j++)
+        {
+            cells[j].style.backgroundColor = `rgb(0,0,0)`;
+            cells[j].style.opacity = 0.0;
+        }
+    }
+}
+
+function maximizeOpacity () {
+    let rows = grid.children;
+    for (let i = 0; i < rows.length; i++)
+    {
+        let cells = rows[i].children;
+        for (let j = 0; j < cells.length; j++)
+        {
+            cells[j].style.opacity = 1.0;
+        }
     }
 }
 
@@ -69,7 +102,7 @@ function resizeGrid () {
     {
         let row = rows[i];
         row.style.height = `${cellHeight}px`;
-        console.log(`${row.style.height}`);
+        //console.log(`${row.style.height}`);
         let cells = row.children;
         for (let j = 0; j < cells.length; j++)
         {
@@ -98,12 +131,15 @@ resizeButton.addEventListener('click', function(event) {
 const bwButton = document.getElementById('buttonBW');
 bwButton.addEventListener('click',function(event){
     cellShadeOption = 0;
+    maximizeOpacity ();
 });
 const rgbButton = document.getElementById('buttonRandomColor');
 rgbButton.addEventListener('click',function(event){
     cellShadeOption = 1;
+    maximizeOpacity ();
 });
 const opacityButton = document.getElementById('buttonOpacity');
 opacityButton.addEventListener('click',function(event){
     cellShadeOption = 2;
+    initializeOpacity ();
 });
