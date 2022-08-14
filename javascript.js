@@ -126,6 +126,14 @@ resizeButton.addEventListener('click', function(event) {
     {
         clearGrid();
         setGrid(cellCount, cellCount);
+        if (cellShadeOption == 2)
+        {
+            initializeOpacity();
+        }
+        else
+        {
+            maximizeOpacity();
+        }
     }
 });
 //color button options
