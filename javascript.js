@@ -3,6 +3,8 @@ const grid = document.querySelector('.grid');
 
 var cellHeight = 8;
 var cellWidth = 8;
+// 0 = bw && 1 = color && 2 = opacity
+var cellShadeOption = 0;
 
 function synchGridRowDimensions () {
     const grid = document.getElementsByClassName('grid')[0];
@@ -33,7 +35,25 @@ function setGrid (rows, columns) {
 
 function shadeCell (event) {
     let cell = event.target;
-    cell.classList.add('shaded');
+    const currentColor = cell.style.backgroundColor;
+    if (cellShadeOption == 0) {
+        if (currentColor != "black")
+        {
+            cell.style.backgroundColor = "black";
+        }
+    }
+    else if (cellShadeOption == 1) {
+        const randomRed = Math.floor(Math.random() * (256));
+        const randomBlue = Math.floor(Math.random() * (256));
+        const randomGreen = Math.floor(Math.random() * (256));
+        cell.style.backgroundColor = `rgb(${randomRed},${randomBlue},${randomGreen})`;
+    }
+    else if (cellShadeOption == 2) {
+        cell.style.backgroundColor = {};
+    }
+    else {
+        console.log("ShadeCell: Unsupported cell shade option")
+    }
 }
 
 function clearGrid () {
@@ -73,4 +93,17 @@ resizeButton.addEventListener('click', function(event) {
         clearGrid();
         setGrid(cellCount, cellCount);
     }
+});
+//color button options
+const bwButton = document.getElementById('buttonBW');
+bwButton.addEventListener('click',function(event){
+    cellShadeOption = 0;
+});
+const rgbButton = document.getElementById('buttonRandomColor');
+rgbButton.addEventListener('click',function(event){
+    cellShadeOption = 1;
+});
+const opacityButton = document.getElementById('buttonOpacity');
+opacityButton.addEventListener('click',function(event){
+    cellShadeOption = 2;
 });
